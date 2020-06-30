@@ -19,7 +19,8 @@ property2.update()
 property1.delete()
 
 
-
+Property.find(property2.id)
+Property.find_property_by_address("33 Penny Lane")
 
 binding.pry
 nil
