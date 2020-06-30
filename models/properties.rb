@@ -22,4 +22,13 @@ class Property
         db.close()
     end
 
+    def update()
+        db = PG.connect( {dbname: 'property_tracker', host: 'localhost'} )
+        sql = "UPDATE properties SET (address, value, bedrooms, year) = ($1, $2, $3, $4)
+            WHERE id = $5"
+        values = [@address, @value, @bedrooms, @year, @id]
+        db.prepare("update", sql)
+        db.exec_prepared("update", values)
+        db.close()
+    end
 end

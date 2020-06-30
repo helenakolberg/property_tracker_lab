@@ -12,9 +12,8 @@ property2.save()
 property3.save()
 property4.save()
 
-
-
-
+property2.address = "9 Cherry Grove"
+property2.update()
 
 
 
