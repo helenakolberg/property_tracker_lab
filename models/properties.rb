@@ -48,4 +48,21 @@ class Property
         db.exec_prepared("delete_all")
         db.close()
     end
+
+    def Property.find(id)
+        db = PG.connect( { dbname: 'property_tracker', host: 'localhost'} )
+        sql = "SELECT * FROM properties WHERE id = $1"
+        values = [id]
+        db.prepare("find", sql)
+        results = db.exec_prepared("find", values)
+        if results.first == nil
+            return
+        end
+        property = results[0] 
+        db.close()
+        return Property.new(property)
+    end
+
+    
+
 end
