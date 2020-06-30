@@ -31,4 +31,21 @@ class Property
         db.exec_prepared("update", values)
         db.close()
     end
+
+    def delete()
+        db = PG.connect( {dbname: 'property_tracker', host: 'localhost'} )
+        sql = "DELETE FROM properties WHERE id = $1"
+        values = [@id]
+        db.prepare("delete", sql)
+        db.exec_prepared("delete", values)
+        db.close()
+    end
+
+    def Property.delete_all()
+        db = PG.connect( { dbname: 'property_tracker', host: 'localhost'} )
+        sql = "DELETE FROM properties"
+        db.prepare("delete_all", sql)
+        db.exec_prepared("delete_all")
+        db.close()
+    end
 end
